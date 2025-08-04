@@ -18,20 +18,24 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
+
     .image-section {
       margin-top: 1rem;
       animation: floatIn 2s ease-in-out;
       position: relative;
     }
+
     .image-section img {
       max-width: 250px;
       border-radius: 1rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
+
     @keyframes floatIn {
       0% { transform: translateY(100px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
+
     .twenty-sign {
       position: absolute;
       top: -20px;
@@ -45,15 +49,13 @@
       font-weight: bold;
       animation: pulseButton 2s infinite;
     }
-    @keyframes popIn {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
-    }
+
     .button-section {
       margin-top: 2rem;
       display: flex;
       justify-content: center;
     }
+
     button {
       padding: 1.5rem 3rem;
       font-size: 1.5rem;
@@ -65,50 +67,88 @@
       animation: pulseButton 2s infinite;
       transition: background-color 0.3s ease, transform 0.3s;
     }
+
     button:hover {
       background-color: #ff699a;
       transform: scale(1.1);
     }
+
     @keyframes pulseButton {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
     .card {
+      perspective: 1000px;
+      width: 300px;
+      height: 200px;
+      margin: 3rem auto;
+      position: relative;
       display: none;
-      background-color: white;
-      padding: 2rem;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card.open .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
       border-radius: 1rem;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      max-width: 400px;
-      text-align: center;
-      margin: 2rem auto;
-      position: relative;
-      animation: heartRain 1s ease-in-out;
-      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
     }
-    h1 {
+
+    .card-front {
+      background: #ffe4e1;
+      font-size: 1.3rem;
+      font-weight: bold;
       color: #e75480;
     }
-    p {
+
+    .card-back {
+      background: white;
+      transform: rotateY(180deg);
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .card-back h1 {
+      color: #e75480;
+      margin-bottom: 1rem;
+    }
+
+    .card-back p {
       font-size: 1.1rem;
       color: #444;
     }
-    .heart {
+
+    .card-back .heart {
       font-size: 2rem;
-      color: #e75480;
-      animation: pulse 1.5s infinite;
+      margin-top: 1rem;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+
     .footer {
-      margin-top: 2rem;
+      margin-top: 1rem;
       font-size: 0.9rem;
       color: #999;
     }
+
     .confetti {
       position: fixed;
       top: 0;
@@ -121,10 +161,12 @@
       opacity: 0.9;
       animation: fadeConfetti 4s ease-in-out infinite;
     }
+
     @keyframes fadeConfetti {
       0%, 100% { opacity: 0.2; }
       50% { opacity: 0.5; }
     }
+
     .hearts-overlay {
       display: overlay;
       position: fixed;
@@ -135,12 +177,14 @@
       pointer-events: none;
       z-index: 100000;
     }
+
     .heart-float {
       position: absolute;
       font-size: 2rem;
       color: #ff69b4;
       animation: fall 60s ease-in infinite;
     }
+
     @keyframes fall {
       0% { transform: translateY(-50px); opacity: 0; }
       50% { opacity: 0.7; }
@@ -165,25 +209,36 @@
     <button onclick="showCard()">See My Wish 💌</button>
   </div>
 
-  <div class="card">
-    <h1>Happy 20th Birthday <br>My Love 🎂</br></h1>
-    <p>
-On this special day, I just want to say how lucky<br> I am to have you in my life, සුදු මැණික...🤗<br>
-      You light up every moment of my life<br> with your cute smile, pure love<br> and sweet compassion.🥺<br>
-      <br>
-      <b>Here’s to more memories, more laughter and<br> a beautiful life together with you, my queen who holds my heart forever!</b>
-    </p>
-    <div class="heart">💖</div>
-    <div class="footer">
-      With all my love,<br>Sahan 💌
+  <div class="card" id="birthdayCard">
+    <div class="card-inner">
+      <div class="card-front">
+        💖 Tap to Open 💖
+      </div>
+      <div class="card-back">
+        <h1>Happy 20th Birthday<br>My Love 🎂</h1>
+        <p>
+          On this special day, I just want to say how lucky<br> I am to have you in my life, සුදු මැණික...🤗<br>
+          You light up every moment of my life<br> with your cute smile, pure love<br> and sweet compassion.🥺<br><br>
+          <b>Here’s to more memories, more laughter and<br> a beautiful life together with you, my queen who holds my heart forever!</b>
+        </p>
+        <div class="heart">💖</div>
+        <div class="footer">With all my love,<br>Sahan 💌</div>
+      </div>
     </div>
   </div>
 
   <script>
     function showCard() {
-      const card = document.querySelector('.card');
+      const card = document.getElementById('birthdayCard');
       card.style.display = 'block';
+
+      // Trigger the flip after rendering
+      setTimeout(() => {
+        card.classList.add('open');
+      }, 100);
+
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
       const hearts = document.getElementById('hearts');
       hearts.style.display = 'block';
       for (let i = 0; i < 20; i++) {
@@ -202,4 +257,3 @@ On this special day, I just want to say how lucky<br> I am to have you in my lif
   </script>
 </body>
 </html>
-
