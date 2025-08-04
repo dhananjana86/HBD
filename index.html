@@ -90,8 +90,8 @@
 
     .twenty-sign {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 4%;
+      left: 4%;
       font-size: 1.2rem;
       background: #fff;
       color: #e75480;
@@ -134,14 +134,14 @@
       justify-content: center;
       align-items: center;
       margin: 2rem auto;
-      max-width: 95vw;
-      min-height: 400px;
+      padding: 1rem;
+      max-width: 100%;
     }
 
     .card {
       width: 100%;
       max-width: 360px;
-      min-height: 100%;
+      min-height: 420px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1s;
@@ -165,6 +165,7 @@
       background-color: #fff;
       text-align: center;
       padding: 1.5rem;
+      box-sizing: border-box;
     }
 
     .card-front h1 {
@@ -227,6 +228,13 @@
         width: 95%;
       }
 
+      .twenty-sign {
+        font-size: 1rem;
+        padding: 0.2rem 0.6rem;
+        top: 5%;
+        left: 5%;
+      }
+
       .card-front h1 {
         font-size: 1.8rem;
       }
@@ -238,85 +246,92 @@
       .card-back p {
         font-size: 0.95rem;
       }
+
+      .card {
+        min-height: 440px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <audio id="bg-music" loop>
-    <source src="happy-birthday-to-you-piano-version-13976.mp3" />
-  </audio>
+<audio id="bg-music" loop>
+  <source src="happy-birthday-to-you-piano-version-13976.mp3" />
+</audio>
 
-  <div class="confetti"></div>
-  <div class="hearts-overlay" id="hearts"></div>
+<div class="confetti"></div>
+<div class="hearts-overlay" id="hearts"></div>
 
-  <!-- Landing Page -->
-  <div id="landingPage" class="page active landing">
-    <div class="image-section">
-      <span class="twenty-sign">20<sup>TH</sup></span>
-      <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
-    </div>
-    <div class="button-section">
-      <button onclick="showCardPage()">See My Wish 💌</button>
-    </div>
+<!-- Landing Page -->
+<div id="landingPage" class="page active landing">
+  <div class="image-section">
+    <span class="twenty-sign">20<sup>TH</sup></span>
+    <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
   </div>
+  <div class="button-section">
+    <button onclick="showCardPage()">See My Wish 💌</button>
+  </div>
+</div>
 
-  <!-- Card Page -->
-  <div id="cardPage" class="page">
-    <div class="card-container" onclick="flipCard()">
-      <div class="card" id="cardInner">
-        <div class="card-face card-front">
-          <h1>Happy 20th Birthday Sanduni! 🎂</h1>
-          <div class="tap-note">Tap to open</div>
-        </div>
-        <div class="card-face card-back">
-          <h2>Happy 20th Birthday <br>My Love 🎂</h2>
-          <p>
-            On this special day, I just want to say how lucky<br>
-            I am to have you in my life, සුදු මැණික...🤗<br>
-            You light up every moment of my life<br>
-            with your cute smile, pure love and sweet compassion.🥺<br><br>
-            <b>Here’s to more memories, more laughter<br>
-            and a beautiful life together with you,<br>
-            my queen who holds my heart forever!</b>
-          </p>
-          <div class="heart">💖</div>
-          <div class="footer">With all my love,<br>Sahan 💌</div>
-        </div>
+<!-- Card Page -->
+<div id="cardPage" class="page">
+  <div class="card-container" onclick="flipCard()">
+    <div class="card" id="cardInner">
+      <div class="card-face card-front">
+        <h1>Happy 20th Birthday Sanduni! 🎂</h1>
+        <div class="tap-note">Tap to open</div>
+      </div>
+      <div class="card-face card-back">
+        <h2>Happy 20th Birthday <br>My Love 🎂</h2>
+        <p>
+          On this special day, I just want to say how lucky<br>
+          I am to have you in my life, සුදු මැණික...🤗<br>
+          You light up every moment of my life<br>
+          with your cute smile, pure love and sweet compassion.🥺<br><br>
+          <b>Here’s to more memories, more laughter<br>
+          and a beautiful life together with you,<br>
+          my queen who holds my heart forever!</b>
+        </p>
+        <div class="heart">💖</div>
+        <div class="footer">With all my love,<br>Sahan 💌</div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    function showCardPage() {
-      document.getElementById('landingPage').classList.remove('active');
-      document.getElementById('cardPage').classList.add('active');
+<script>
+  function showCardPage() {
+    document.getElementById('landingPage').classList.remove('active');
+    document.getElementById('cardPage').classList.add('active');
+  }
+
+  function flipCard() {
+    const card = document.getElementById('cardInner');
+    const hearts = document.getElementById('hearts');
+    const audio = document.getElementById('bg-music');
+
+    card.classList.toggle('is-flipped');
+    hearts.style.display = 'block';
+
+    if (audio.paused) {
+      audio.volume = 0.2;
+      audio.play().catch(err => console.log("Playback error:", err));
     }
 
-    function flipCard() {
-      const card = document.getElementById('cardInner');
-      const hearts = document.getElementById('hearts');
-      const audio = document.getElementById('bg-music');
+    const heartCount = window.innerWidth < 600 ? 10 : 25;
 
-      card.classList.toggle('is-flipped');
-      hearts.style.display = 'block';
-
-      if (!audio.playing) {
-        audio.volume = 0.2;
-        audio.play().catch(err => console.log("Playback error:", err));
-      }
-
-      for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart-float');
-        heart.innerHTML = '💗';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-        heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
-        heart.style.top = '-20px';
-        document.getElementById('hearts').appendChild(heart);
-      }
+    for (let i = 0; i < heartCount; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-float');
+      heart.innerHTML = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+      heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
+      heart.style.top = '-20px';
+      document.getElementById('hearts').appendChild(heart);
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
