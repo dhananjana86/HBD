@@ -331,25 +331,29 @@
       audio.play().catch(err => console.log("Playback error:", err));
     }
 
-    const heartCount = 8; // Fixed number of popping hearts
+    const heartCount = 10;
 
+    // Create evenly spaced horizontal positions (in vw)
+    let positions = [];
     for (let i = 0; i < heartCount; i++) {
+      positions.push((i + 0.5) * (100 / heartCount)); // centers each heart
+    }
+
+    // Shuffle the array randomly
+    positions = positions.sort(() => Math.random() - 0.5);
+
+    positions.forEach((left, i) => {
       setTimeout(() => {
         const heart = document.createElement('div');
         heart.classList.add('heart-float');
         heart.innerHTML = '💗';
-
-        // Center-aligned distribution (40vw to 60vw)
-        const offset = 40 + Math.random() * 20; // 40vw to 60vw
-        heart.style.left = offset + 'vw';
-
+        heart.style.left = left + 'vw';
+        heart.style.top = '-20px';
         heart.style.animationDuration = (4 + Math.random() * 2) + 's';
         heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
-        heart.style.top = '-20px';
-
         hearts.appendChild(heart);
-      }, Math.random() * 1500); // Random delay up to 1.5s
-    }
+      }, Math.random() * 1500);
+    });
   }
 </script>
 
