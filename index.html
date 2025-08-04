@@ -133,16 +133,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: auto;
+      min-height: 100vh;
       width: 100%;
+      padding: 1rem;
       box-sizing: border-box;
     }
 
     .card {
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
       height: auto;
-      aspect-ratio: 3 / 4;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1s;
@@ -155,7 +156,7 @@
     .card-face {
       position: absolute;
       width: 100%;
-      height: 100%;
+      min-height: 520px;
       backface-visibility: hidden;
       display: flex;
       justify-content: center;
@@ -251,15 +252,13 @@
 
       .card {
         width: 95%;
-        max-width: 460px;
-        aspect-ratio: 3 / 4;
+        max-width: 480px;
       }
 
       .card-container {
-        height: 100vh;
-        width: 100%;
+        height: auto;
+        min-height: 100vh;
         padding: 1rem;
-        margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -337,7 +336,7 @@
     // Create evenly spaced horizontal positions (in vw)
     let positions = [];
     for (let i = 0; i < heartCount; i++) {
-      positions.push((i + 0.5) * (100 / heartCount)); // centers each heart
+      positions.push((i + 0.5) * (100 / heartCount));
     }
 
     // Shuffle the array randomly
@@ -360,16 +359,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
