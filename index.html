@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy 20th Birthday Love 💖</title>
+  <title>Happy 20th Birthday Love!💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
@@ -22,7 +22,7 @@
       pointer-events: none;
       background-image: url("colorful-confetti-background-with-text-space.png");
       background-size: cover;
-      opacity: 0.9;
+      opacity: 0.3;
       animation: fadeConfetti 4s ease-in-out infinite;
       z-index: 0;
     }
@@ -56,9 +56,26 @@
       100% { transform: translateY(100vh); opacity: 0; }
     }
 
-    .image-section {
-      margin-top: 2rem;
+    .page {
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .landing {
       text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .image-section {
       position: relative;
     }
 
@@ -88,8 +105,7 @@
     }
 
     .button-section {
-      text-align: center;
-      margin: 2rem 0;
+      margin-top: 2rem;
     }
 
     button {
@@ -128,10 +144,6 @@
       transition: transform 1.5s;
     }
 
-    .card:hover {
-      cursor: pointer;
-    }
-
     .card.is-flipped {
       transform: rotateY(180deg);
     }
@@ -146,17 +158,14 @@
       align-items: center;
       border-radius: 1rem;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-front {
-      background-color: #fff;
       flex-direction: column;
+      background-color: #fff;
       text-align: center;
     }
 
     .card-front h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #e75480;
       animation: gentlePulse 3s ease-in-out infinite;
     }
@@ -175,10 +184,7 @@
     }
 
     .card-back {
-      background-color: #fff;
       transform: rotateY(180deg);
-      flex-direction: column;
-      text-align: center;
       padding: 1.5rem;
     }
 
@@ -243,41 +249,49 @@
   <div class="confetti"></div>
   <div class="hearts-overlay" id="hearts"></div>
 
-  <div class="image-section">
-    <div class="twenty-sign">20<sup>TH</sup></div>
-    <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
+  <!-- Landing Page -->
+  <div id="landingPage" class="page active landing">
+    <div class="image-section">
+      <div class="twenty-sign">20<sup>TH</sup></div>
+      <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
+    </div>
+    <div class="button-section">
+      <button onclick="showCardPage()">See My Wish 💌</button>
+    </div>
   </div>
 
-  <div class="button-section">
-    <button onclick="location.href='#card'">See My Wish 💌</button>
-  </div>
-
-  <div class="card-container" id="card" onclick="flipCard()">
-    <div class="card" id="cardInner">
-      <div class="card-face card-front">
-        <div>
-          <h1>Happy 20th Birthday Sanduni!💖</h1>
+  <!-- Card Page -->
+  <div id="cardPage" class="page">
+    <div class="card-container" onclick="flipCard()">
+      <div class="card" id="cardInner">
+        <div class="card-face card-front">
+          <h1>Happy 20th Birthday Sanduni! 🎂</h1>
           <div class="tap-note">Tap to open</div>
         </div>
-      </div>
-      <div class="card-face card-back">
-        <h2>Happy 20th Birthday <br>My Love!🎂</h2>
-        <p>
-          On this special day, I just want to say how lucky<br>
-          I am to have you in my life, සුදු මැණික...🤗<br>
-          You light up every moment of my life<br>
-          with your cute smile, pure love and sweet compassion.🥺<br><br>
-          <b>Here’s to more memories, more laughter<br>
-          and a beautiful life together with you,<br>
-          my queen who holds my heart forever!</b>
-        </p>
-        <div class="heart">💖</div>
-        <div class="footer">With all my love,<br>Sahan 💌</div>
+        <div class="card-face card-back">
+          <h2>Happy 20th Birthday <br>My Love 🎂</h2>
+          <p>
+            On this special day, I just want to say how lucky<br>
+            I am to have you in my life, සුදු මැණික...🤗<br>
+            You light up every moment of my life<br>
+            with your cute smile, pure love and sweet compassion.🥺<br><br>
+            <b>Here’s to more memories, more laughter<br>
+            and a beautiful life together with you,<br>
+            my queen who holds my heart forever!</b>
+          </p>
+          <div class="heart">💖</div>
+          <div class="footer">With all my love,<br>Sahan 💌</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+    function showCardPage() {
+      document.getElementById('landingPage').classList.remove('active');
+      document.getElementById('cardPage').classList.add('active');
+    }
+
     function flipCard() {
       const card = document.getElementById('cardInner');
       const hearts = document.getElementById('hearts');
@@ -302,4 +316,4 @@
     }
   </script>
 </body>
-</html> 
+</html>
