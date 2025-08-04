@@ -295,7 +295,7 @@
         <div class="tap-note">Tap to open</div>
       </div>
       <div class="card-face card-back">
-        <h2>Happy 20th Birthday <br>My Love! 🎂</h2>
+        <h1>Happy 20th Birthday <br>My Love! 🎂</h1>
         <p>
           On this special day, I just want to say how lucky<br>
           I am to have you in my life, සුදු මැණික...🤗<br>
@@ -331,23 +331,27 @@
       audio.play().catch(err => console.log("Playback error:", err));
     }
 
-    const heartCount = window.innerWidth < 600 ? 4 : 10;
+    const heartCount = 8; // Fixed number of popping hearts
 
     for (let i = 0; i < heartCount; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart-float');
-      heart.innerHTML = '💗';
-      heart.style.left = Math.random() * 150 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 15) + 's';
-      heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
-      heart.style.top = '-20px';
-      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-float');
+        heart.innerHTML = '💗';
+
+        // Center-aligned distribution (40vw to 60vw)
+        const offset = 40 + Math.random() * 20; // 40vw to 60vw
+        heart.style.left = offset + 'vw';
+
+        heart.style.animationDuration = (4 + Math.random() * 2) + 's';
+        heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
+        heart.style.top = '-20px';
+
+        hearts.appendChild(heart);
+      }, Math.random() * 1500); // Random delay up to 1.5s
     }
   }
 </script>
 
 </body>
 </html>
-
-
-
