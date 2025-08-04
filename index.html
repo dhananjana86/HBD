@@ -133,11 +133,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: auto;
-      min-height: 100vh;
       width: 100%;
+      min-height: 100vh;
       padding: 1rem;
       box-sizing: border-box;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .card {
@@ -173,7 +176,7 @@
     .card-front h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 42px;
-       margin-top: 10rem;
+      margin-top: 10rem;
       color: #e75480;
       animation: gentlePulse 3s ease-in-out infinite;
     }
@@ -256,9 +259,13 @@
       }
 
       .card-container {
-        height: auto;
-        min-height: 100vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
         padding: 1rem;
+        box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -291,7 +298,7 @@
   <div class="card-container" onclick="flipCard()">
     <div class="card" id="cardInner">
       <div class="card-face card-front">
-        <h1 style=font-size: 100px;">Happy 20th Birthday<br> Sanduni! 🎂</h1>
+        <h1 style="font-size: 100px;">Happy 20th Birthday<br> Sanduni! 🎂</h1>
         <div class="tap-note">Tap to open</div>
       </div>
       <div class="card-face card-back">
@@ -332,16 +339,11 @@
     }
 
     const heartCount = 5;
-
-    // Create evenly spaced horizontal positions (in vw)
     let positions = [];
     for (let i = 0; i < heartCount; i++) {
       positions.push((i + 0.5) * (100 / heartCount));
     }
-
-    // Shuffle the array randomly
     positions = positions.sort(() => Math.random() - 0.5);
-
     positions.forEach((left, i) => {
       setTimeout(() => {
         const heart = document.createElement('div');
