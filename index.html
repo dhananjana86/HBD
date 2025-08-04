@@ -4,98 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy 20th Birthday Love!💖</title>
-
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
-      overflow-x: hidden;
-      overflow-y: auto;
+    :root {
+      --primary: #e75480;
+      --bg-light: #ffe4e1;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, var(--bg-light));
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .page {
+      display: none;
+      padding: 1rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    /* Landing Page */
     .image-section {
-      margin-top: 1rem;
-      animation: floatIn 2s ease-in-out;
-      position: relative;
+      margin-top: 2rem;
+      text-align: center;
     }
 
     .image-section img {
-      max-width: 250px;
+      width: 95vw;
+      max-width: 360px;
       border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-
-    @keyframes floatIn {
-      0% { transform: translateY(100px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
 
     .twenty-sign {
       position: absolute;
-      top: -20px;
-      left: -20px;
-      font-size: 2.5rem;
+      font-size: 2rem;
       background: #fff;
-      color: #e75480;
-      padding: 0.3rem 1rem;
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       font-weight: bold;
-      animation: pulseButton 2s infinite;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      top: 1rem;
+      left: 1rem;
     }
 
     .button-section {
       margin-top: 2rem;
-      display: flex;
-      justify-content: center;
     }
 
     button {
-      padding: 1.5rem 3rem;
-      font-size: 1.5rem;
-      background-color: #e75480;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: var(--primary);
       border: none;
       color: white;
-      border-radius: 2.5rem;
+      border-radius: 2rem;
       cursor: pointer;
-      animation: pulseButton 2s infinite;
-      transition: background-color 0.3s ease, transform 0.3s;
+      transition: background-color 0.3s ease, transform 0.2s;
     }
 
     button:hover {
       background-color: #ff699a;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
-    @keyframes pulseButton {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .card {
+    /* Card Page */
+    .card-container {
       perspective: 1000px;
-      width: 90%;
+      width: 100%;
       max-width: 400px;
-      height: auto;
-      min-height: 400px;
-      margin: 3rem auto;
-      position: relative;
-      display: none;
+      margin: 2rem auto;
     }
 
     .card-inner {
       width: 100%;
-      height: 100%;
-      transition: transform 2s ease-in-out; /* Slower animation */
+      transition: transform 2s ease-in-out;
       transform-style: preserve-3d;
       position: relative;
+      min-height: 400px;
     }
 
     .card.open .card-inner {
@@ -105,56 +104,72 @@
     .card-front, .card-back {
       position: absolute;
       width: 100%;
-      min-height: 400px;
+      height: 100%;
       backface-visibility: hidden;
       border-radius: 1rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background-color: white;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem;
-      box-sizing: border-box;
+      text-align: center;
     }
 
     .card-front {
-      background: #ffe4e1;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #e75480;
+      flex-direction: column;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .card-front .emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .tap-text {
+      font-size: 1rem;
+      color: #666;
+      opacity: 0;
+      animation: typing 2s steps(15) 1s forwards;
+    }
+
+    @keyframes typing {
+      to {
+        opacity: 1;
+      }
     }
 
     .card-back {
-      background: white;
       transform: rotateY(180deg);
       flex-direction: column;
-      text-align: center;
-      padding: 2rem 1rem;
     }
 
     .card-back h1 {
-      color: #e75480;
-      margin-bottom: 1rem;
+      color: var(--primary);
       font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .card-back p {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #333;
       line-height: 1.5;
     }
 
-    .card-back .heart {
-      font-size: 2rem;
-      margin-top: 1rem;
+    .heart {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+      color: var(--primary);
     }
 
     .footer {
-      margin-top: 1rem;
       font-size: 0.9rem;
-      color: #999;
+      color: #777;
+      margin-top: 1rem;
     }
 
+    /* Confetti & Hearts */
     .confetti {
       position: fixed;
       top: 0;
@@ -164,89 +179,99 @@
       pointer-events: none;
       background-image: url("colorful-confetti-background-with-text-space.png");
       background-size: cover;
-      opacity: 0.9;
-      animation: fadeConfetti 4s ease-in-out infinite;
+      opacity: 0.5;
       z-index: 1;
     }
 
-    @keyframes fadeConfetti {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.5; }
-    }
-
     .hearts-overlay {
-      display: overlay;
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 100000;
+      z-index: 100;
     }
 
     .heart-float {
       position: absolute;
-      font-size: 2rem;
+      font-size: 1.4rem;
       color: #ff69b4;
-      animation: fall 60s ease-in infinite;
+      animation: fall 8s linear infinite;
     }
 
     @keyframes fall {
       0% { transform: translateY(-50px); opacity: 0; }
-      50% { opacity: 0.7; }
+      50% { opacity: 0.8; }
       100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .card-back h1 {
+        font-size: 1.3rem;
+      }
+      .card-back p {
+        font-size: 0.95rem;
+      }
+      .image-section img {
+        width: 95vw;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Audio -->
   <audio id="bg-music" loop>
     <source src="happy-birthday-to-you-piano-version-13976.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Confetti + Hearts -->
   <div class="confetti"></div>
   <div class="hearts-overlay" id="hearts"></div>
 
-  <div class="image-section">
-    <div class="twenty-sign">20</div>
-    <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
+  <!-- Page 1: Landing -->
+  <div class="page active" id="page1">
+    <div class="image-section">
+      <div class="twenty-sign">20</div>
+      <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
+    </div>
+    <div class="button-section">
+      <button onclick="goToCard()">See My Wish 💌</button>
+    </div>
   </div>
 
-  <div class="button-section">
-    <button onclick="showCard()">See My Wish 💌</button>
-  </div>
-
-  <div class="card" id="birthdayCard">
-    <div class="card-inner">
-      <div class="card-front">
-        💖 Tap to Open 💖
-      </div>
-      <div class="card-back">
-        <h1>Happy 20th Birthday<br>My Love 🎂</h1>
-        <p>
-          On this special day, I just want to say how lucky<br>
-          I am to have you in my life, සුදු මැණික...🤗<br><br>
-          You light up every moment of my life<br>
-          with your cute smile, pure love and sweet compassion. 🥺<br><br>
-          <b>Here’s to more memories, more laughter and<br>
-          a beautiful life together with you, my queen who holds my heart forever!</b>
-        </p>
-        <div class="heart">💖</div>
-        <div class="footer">With all my love,<br>Sahan 💌</div>
+  <!-- Page 2: Card -->
+  <div class="page" id="page2">
+    <div class="card card-container" id="card">
+      <div class="card-inner" onclick="flipCard()">
+        <div class="card-front">
+          <div class="emoji">🎂</div>
+          <div class="tap-text">Tap to open</div>
+        </div>
+        <div class="card-back">
+          <h1>Happy 20th Birthday<br>My Love 🎂</h1>
+          <p>
+            On this special day, I just want to say how lucky<br>
+            I am to have you in my life, සුදු මැණික... 🤗<br><br>
+            You light up every moment of my life<br>
+            with your cute smile, pure love and sweet compassion. 🥺<br><br>
+            <b>Here’s to more memories, more laughter,<br>
+            and a beautiful life together with you,<br>
+            my queen who holds my heart forever!</b>
+          </p>
+          <div class="heart">💖</div>
+          <div class="footer">With all my love,<br>Sahan 💌</div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Script -->
   <script>
-    function showCard() {
-      const card = document.getElementById('birthdayCard');
-      card.style.display = 'block';
-
-      setTimeout(() => {
-        card.classList.add('open');
-      }, 100);
-
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    function goToCard() {
+      document.getElementById("page1").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
 
       const hearts = document.getElementById('hearts');
       hearts.style.display = 'block';
@@ -255,16 +280,19 @@
         heart.classList.add('heart-float');
         heart.innerHTML = '💗';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 2 + Math.random() * 2 + 's';
+        heart.style.animationDuration = 4 + Math.random() * 3 + 's';
         hearts.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000000);
+        setTimeout(() => heart.remove(), 12000);
       }
 
       const audio = document.getElementById('bg-music');
-      audio.volume = 0.2; // Softened audio volume
-      audio.play().catch(error => console.log('Audio playback error:', error));
+      audio.volume = 0.2;
+      audio.play().catch(err => console.log('Audio autoplay failed:', err));
+    }
+
+    function flipCard() {
+      document.getElementById("card").classList.add("open");
     }
   </script>
 </body>
 </html>
-
