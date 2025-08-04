@@ -93,7 +93,7 @@
     .card-inner {
       width: 100%;
       height: 100%;
-      transition: transform 1s ease;
+      transition: transform 2s ease-in-out; /* Slower animation */
       transform-style: preserve-3d;
       position: relative;
     }
@@ -261,7 +261,7 @@
       }
 
       const audio = document.getElementById('bg-music');
-      audio.volume = 0.3; // Lower volume here
+      audio.volume = 0.2; // Softened audio volume
       audio.play().catch(error => console.log('Audio playback error:', error));
     }
   </script>
