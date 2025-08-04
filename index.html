@@ -90,12 +90,12 @@
 
     .twenty-sign {
       position: absolute;
-      top: 3%;
-      left: 3%;
-      font-size: 1.5rem;
+      top: 2%;
+      left: 2%;
+      font-size: 2.2rem;
       background: #fff;
       color: #e75480;
-      padding: 0.4rem 1rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       font-weight: bold;
@@ -135,13 +135,14 @@
       align-items: center;
       margin: 2rem auto;
       padding: 1rem;
-      max-width: 90%;
+      width: 90%;
+      max-width: 400px;
     }
 
     .card {
       width: 100%;
-      max-width: 400px;
-      min-height: 540px;
+      height: auto;
+      aspect-ratio: 3 / 4;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1s;
@@ -229,10 +230,10 @@
       }
 
       .twenty-sign {
-        font-size: 1.6rem;
-        padding: 0.5rem 1.1rem;
-        top: 4%;
-        left: 4%;
+        font-size: 2.4rem;
+        padding: 0.7rem 1.6rem;
+        top: 3%;
+        left: 3%;
       }
 
       .card-front h1 {
@@ -248,13 +249,13 @@
       }
 
       .card {
-        width: 95%;
-        max-width: 400px;
-        min-height: 520px;
+        width: 100%;
+        aspect-ratio: 3 / 4;
       }
 
       .card-container {
-        max-width: 95%;
+        width: 95%;
+        max-width: 400px;
       }
     }
   </style>
@@ -275,7 +276,7 @@
     <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
   </div>
   <div class="button-section">
-    <button onclick="showCardPage()">See My Wish 💌</button>
+    <button onclick="showCardPage()">See My Wish💌</button>
   </div>
 </div>
 
@@ -284,11 +285,11 @@
   <div class="card-container" onclick="flipCard()">
     <div class="card" id="cardInner">
       <div class="card-face card-front">
-        <h1>Happy 20th Birthday Sanduni! 🎂</h1>
+        <h1>Happy 20th Birthday Sanduni!🎂</h1>
         <div class="tap-note">Tap to open</div>
       </div>
       <div class="card-face card-back">
-        <h2>Happy 20th Birthday <br>My Love 🎂</h2>
+        <h2>Happy 20th Birthday <br>My Love!🎂</h2>
         <p>
           On this special day, I just want to say how lucky<br>
           I am to have you in my life, සුදු මැණික...🤗<br>
@@ -324,7 +325,7 @@
       audio.play().catch(err => console.log("Playback error:", err));
     }
 
-    const heartCount = window.innerWidth < 600 ? 8 : 20;
+    const heartCount = window.innerWidth < 600 ? 4 : 10;
 
     for (let i = 0; i < heartCount; i++) {
       const heart = document.createElement('div');
