@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy 20th Birthday Love 💖</title>
+  <title>Happy 20th Birthday Sanduni!💖</title>
   <style>
     :root {
       --primary: #e75480;
@@ -35,7 +35,6 @@
       display: flex;
     }
 
-    /* Landing Page */
     .image-section {
       margin-top: 2rem;
       position: relative;
@@ -92,7 +91,6 @@
       animation: pulse 2.5s ease-in-out infinite;
     }
 
-    /* Card Page */
     .card-container {
       perspective: 1000px;
       width: 100%;
@@ -162,6 +160,7 @@
       color: var(--primary);
       font-size: 1.6rem;
       margin-bottom: 1rem;
+      animation: pulse 2.5s ease-in-out infinite;
     }
 
     .card-back p {
@@ -174,6 +173,7 @@
       font-size: 1.8rem;
       margin: 1rem 0;
       color: var(--primary);
+      animation: pulse 2.5s ease-in-out infinite;
     }
 
     .footer {
@@ -233,30 +233,26 @@
 </head>
 <body>
 
-  <!-- Audio -->
   <audio id="bg-music" loop>
     <source src="happy-birthday-to-you-piano-version-13976.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Confetti + Hearts -->
   <div class="confetti"></div>
   <div class="hearts-overlay" id="hearts"></div>
 
-  <!-- Page 1 -->
   <div class="page active" id="page1">
     <div class="image-section">
       <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
       <div class="twenty-sign">20<sup>TH</sup></div>
     </div>
     <div class="button-section">
-      <button onclick="goToCard()">See My Wish 💌</button>
+      <button onclick="goToCard()">See My Wish 📬</button>
     </div>
   </div>
 
-  <!-- Page 2 -->
   <div class="page" id="page2">
-    <div class="card card-container" id="card">
-      <div class="card-inner" onclick="flipCard()">
+    <div class="card card-container" id="card" onclick="flipCard()">
+      <div class="card-inner">
         <div class="card-front">
           <div class="emoji">🎂</div>
           <div class="tap-text">Tap to open</div>
@@ -273,7 +269,7 @@
             my queen who holds my heart forever!</b>
           </p>
           <div class="heart">💖</div>
-          <div class="footer">With all my love,<br>Sahan 💌</div>
+          <div class="footer">With all my love,<br>Sahan 📬</div>
         </div>
       </div>
     </div>
@@ -284,9 +280,20 @@
       document.getElementById("page1").classList.remove("active");
       document.getElementById("page2").classList.add("active");
 
+      const audio = document.getElementById('bg-music');
+      audio.volume = 0.3;
+      audio.play().catch(err => console.log('Audio autoplay failed:', err));
+    }
+
+    function flipCard() {
+      const card = document.getElementById("card");
+      card.classList.add("open");
+      startHeartRain();
+    }
+
+    function startHeartRain() {
       const hearts = document.getElementById('hearts');
-      hearts.style.display = 'block';
-      for (let i = 0; i < 20; i++) {
+      setInterval(() => {
         const heart = document.createElement('div');
         heart.classList.add('heart-float');
         heart.innerHTML = '💗';
@@ -294,15 +301,7 @@
         heart.style.animationDuration = 4 + Math.random() * 3 + 's';
         hearts.appendChild(heart);
         setTimeout(() => heart.remove(), 12000);
-      }
-
-      const audio = document.getElementById('bg-music');
-      audio.volume = 0.3;
-      audio.play().catch(err => console.log('Audio autoplay failed:', err));
-    }
-
-    function flipCard() {
-      document.getElementById("card").classList.add("open");
+      }, 400);
     }
   </script>
 </body>
