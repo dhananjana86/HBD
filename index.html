@@ -171,8 +171,8 @@
 
     .card-front h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 42px;
-       margin-top: 10rem;
+      font-size: 63px;
+      margin-top: 10rem;
       color: #e75480;
       animation: gentlePulse 3s ease-in-out infinite;
     }
@@ -238,7 +238,7 @@
       }
 
       .card-front h1 {
-        font-size: 1.8rem;
+        font-size: 2.7rem;
       }
 
       .card-back h2 {
@@ -292,7 +292,7 @@
   <div class="card-container" onclick="flipCard()">
     <div class="card" id="cardInner">
       <div class="card-face card-front">
-        <h1 style=font-size: 100px;">Happy 20th Birthday<br> Sanduni! 🎂</h1>
+        <h1 style="font-size: 63px;">Happy 20th Birthday<br> Sanduni! 🎂</h1>
         <div class="tap-note">Tap to open</div>
       </div>
       <div class="card-face card-back">
@@ -334,13 +334,11 @@
 
     const heartCount = 5;
 
-    // Create evenly spaced horizontal positions (in vw)
     let positions = [];
     for (let i = 0; i < heartCount; i++) {
-      positions.push((i + 0.5) * (100 / heartCount)); // centers each heart
+      positions.push((i + 0.5) * (100 / heartCount));
     }
 
-    // Shuffle the array randomly
     positions = positions.sort(() => Math.random() - 0.5);
 
     positions.forEach((left, i) => {
@@ -360,4 +358,3 @@
 
 </body>
 </html>
-
