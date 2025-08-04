@@ -72,16 +72,18 @@
 
     .landing {
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 2rem 1rem;
     }
 
     .image-section {
       position: relative;
+      display: flex;
+      justify-content: center;
     }
 
     .image-section img {
-      max-width: 90%;
-      max-height: 400px;
+      width: 90%;
+      max-width: 400px;
       border-radius: 1rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
@@ -90,14 +92,15 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       background: #fff;
       color: #e75480;
-      padding: 0.3rem 1rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 50%;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       font-weight: bold;
       animation: gentlePulse 3s ease-in-out infinite;
+      z-index: 10;
     }
 
     .twenty-sign sup {
@@ -130,18 +133,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 3rem auto;
-      max-width: 90vw;
-      height: 350px;
-      cursor: pointer;
+      margin: 2rem auto;
+      max-width: 95vw;
+      min-height: 400px;
     }
 
     .card {
-      width: 300px;
-      height: 100%;
+      width: 100%;
+      max-width: 360px;
+      min-height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 1.5s;
+      transition: transform 1s;
     }
 
     .card.is-flipped {
@@ -161,11 +164,12 @@
       flex-direction: column;
       background-color: #fff;
       text-align: center;
+      padding: 1.5rem;
     }
 
     .card-front h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: #e75480;
       animation: gentlePulse 3s ease-in-out infinite;
     }
@@ -185,11 +189,10 @@
 
     .card-back {
       transform: rotateY(180deg);
-      padding: 1.5rem;
     }
 
     .card-back h2 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       color: #e75480;
       margin-bottom: 1rem;
       animation: gentlePulse 3s ease-in-out infinite;
@@ -220,18 +223,16 @@
     }
 
     @media (max-width: 600px) {
-      .card-container {
-        height: auto;
-        margin: 2rem 1rem;
+      .image-section img {
+        width: 95%;
       }
 
-      .card {
-        width: 90%;
-        height: 300px;
+      .card-front h1 {
+        font-size: 1.8rem;
       }
 
       .card-back h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
 
       .card-back p {
@@ -252,7 +253,7 @@
   <!-- Landing Page -->
   <div id="landingPage" class="page active landing">
     <div class="image-section">
-      <div class="twenty-sign">20<sup>TH</sup></div>
+      <span class="twenty-sign">20<sup>TH</sup></span>
       <img src="WhatsApp Image 2025-06-19 at 11.22.36.jpeg" alt="Her Birthday Pic" />
     </div>
     <div class="button-section">
@@ -297,10 +298,15 @@
       const hearts = document.getElementById('hearts');
       const audio = document.getElementById('bg-music');
 
-      card.classList.add('is-flipped');
+      card.classList.toggle('is-flipped');
       hearts.style.display = 'block';
 
-      for (let i = 0; i < 30; i++) {
+      if (!audio.playing) {
+        audio.volume = 0.2;
+        audio.play().catch(err => console.log("Playback error:", err));
+      }
+
+      for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
         heart.classList.add('heart-float');
         heart.innerHTML = '💗';
@@ -310,9 +316,6 @@
         heart.style.top = '-20px';
         document.getElementById('hearts').appendChild(heart);
       }
-
-      audio.volume = 0.3;
-      audio.play().catch(err => console.log("Playback error:", err));
     }
   </script>
 </body>
