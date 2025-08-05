@@ -136,13 +136,13 @@
       height: 100vh;
       width: 100%;
       box-sizing: border-box;
+      padding: 1rem;
     }
 
     .card {
       width: 100%;
-      max-width: 460px;
-      height: auto;
-      aspect-ratio: 3 / 4;
+      max-width: 500px;
+      height: 660px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1s;
@@ -181,7 +181,7 @@
       font-size: 0.9rem;
       color: #888;
       margin-top: 3rem;
-      animation: fadeInSlow 6s infinite;
+      animation: fadeInSlow 3s infinite;
     }
 
     @keyframes fadeInSlow {
@@ -194,7 +194,7 @@
       transform: rotateY(180deg);
     }
 
-    .card-back h2 {
+    .card-back h2, .card-back h1 {
       font-size: 1.3rem;
       color: #e75480;
       margin-bottom: 1rem;
@@ -251,8 +251,8 @@
 
       .card {
         width: 95%;
-        max-width: 460px;
-        aspect-ratio: 3 / 4;
+        max-width: 500px;
+        height: 660px;
       }
 
       .card-container {
@@ -358,4 +358,3 @@
 
 </body>
 </html>
-
