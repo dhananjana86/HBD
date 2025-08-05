@@ -11,10 +11,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
       overflow-x: hidden;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .confetti {
@@ -63,15 +59,10 @@
     .page {
       display: none;
       animation: fadeIn 1s ease forwards;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .page.active {
-      display: flex;
+      display: block;
     }
 
     @keyframes fadeIn {
@@ -81,7 +72,7 @@
 
     .landing {
       text-align: center;
-      flex-direction: column;
+      padding: 2rem 1rem;
     }
 
     .image-section {
@@ -142,12 +133,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .card {
       width: 100%;
-      max-width: 400px;
-      height: 500px;
+      max-width: 460px;
+      height: auto;
+      aspect-ratio: 3 / 4;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 1s;
@@ -163,20 +158,21 @@
       height: 100%;
       backface-visibility: hidden;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       border-radius: 1rem;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      flex-direction: column;
       background-color: #fff;
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem;
       box-sizing: border-box;
     }
 
     .card-front h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 50px;
+      margin-top: 10rem;
       color: #e75480;
       animation: gentlePulse 3s ease-in-out infinite;
     }
@@ -198,8 +194,8 @@
       transform: rotateY(180deg);
     }
 
-    .card-back h1 {
-      font-size: 1.4rem;
+    .card-back h2 {
+      font-size: 1.3rem;
       color: #e75480;
       margin-bottom: 1rem;
       animation: gentlePulse 2s ease-in-out infinite;
@@ -208,8 +204,7 @@
     .card-back p {
       font-size: 1rem;
       color: #444;
-      line-height: 1.6;
-      margin: 0;
+      line-height: 1.5;
     }
 
     .card-back .heart {
@@ -231,28 +226,43 @@
     }
 
     @media (max-width: 600px) {
-      .card {
-        height: 460px;
+      .image-section img {
+        width: 95%;
       }
 
-      .card-container {
-        padding: 1rem;
-      }
-
-      .card-face {
-        padding: 1.5rem 1rem;
+      .twenty-sign {
+        font-size: 3.4rem;
+        padding: 1.2rem 2rem;
+        top: 2%;
+        left: 2%;
       }
 
       .card-front h1 {
-        font-size: 2.4rem;
+        font-size: 2.7rem;
       }
 
-      .card-back h1 {
-        font-size: 1.2rem;
+      .card-back h2 {
+        font-size: 1.1rem;
       }
 
       .card-back p {
         font-size: 0.95rem;
+      }
+
+      .card {
+        width: 95%;
+        max-width: 460px;
+        aspect-ratio: 3 / 4;
+      }
+
+      .card-container {
+        height: 100vh;
+        width: 100%;
+        padding: 1rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   </style>
@@ -282,12 +292,12 @@
   <div class="card-container" onclick="flipCard()">
     <div class="card" id="cardInner">
       <div class="card-face card-front">
-        <h1>Happy 20th Birthday<br> Sanduni! 🎂</h1>
+        <h1 style="font-size: 63px;">Happy 20th Birthday<br> Sanduni! 🎂</h1>
         <div class="tap-note">Tap to open</div>
       </div>
       <div class="card-face card-back">
         <h1>Happy 20th Birthday <br>My Love! 🎂</h1>
-        <p>
+        <p style="font-size: 16.2px;">
           On this special day, I just want to say how lucky<br>
           I am to have you in my life, සුදු මැණික...🤗<br>
           You light up every moment of my life<br>
@@ -323,6 +333,7 @@
     }
 
     const heartCount = 5;
+
     let positions = [];
     for (let i = 0; i < heartCount; i++) {
       positions.push((i + 0.5) * (100 / heartCount));
